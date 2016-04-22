@@ -1,0 +1,31 @@
+.jumbotron{
+	background-image: url("saferide_banner.png"); !important;
+	background-size:100% 100%;
+
+	color: transparent; !important;
+	text-align: center;
+	font-size: 80px;
+
+}
+
+hr{
+	color: #243c83;
+	border-color: #243c83;
+}
+
+.btn btn-default{
+	margin-bottom: 15 px !important;
+}
+
+body{
+	background-image: url("bkg.png");
+}
+
+input[type=text] {
+    visibility:hidden;
+}
+
+input[type=checkbox]:checked + input[type=text] {
+    visibility:visible;
+    width: 700px !important;
+}

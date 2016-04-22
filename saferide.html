@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Saferide</title>
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script> 
+      $(document).ready(function() {
+        $('#button').click(function(){
+          name_input= $('#Name').val();
+          uoid_input=$("#UO_ID").val(); 
+          phone_input=$("#Phone_number").val(); 
+          party_input=$("#Party_size").val(); 
+          currentLocation_input=$("#Location").val(); 
+          time_input=$("#Time").val();
+          dropLocation_input=$("#Drop-off").val(); 
+          additionalInfo_input=$("#Additional_info").val();      
+          $.post("http://localhost:3000/submitInfoFromClient", {
+            name : name_input, 
+            uoid: uoid_input,
+            phone: phone_input,
+            party: party_input,
+            currentLocation: currentLocation_input,
+            time: time_input,
+            dropLocation: dropLocation_input,
+            additionalInfo: additionalInfo_input},
+            function(data){ 
+          });
+        });
+        $('#dispatch').click(function(){
+          console.log('dispatch clicked');
+          
+            
+          $.post("http://localhost:3000/dispatchQuery",null, function(resp) {
+              console.log(jQuery.type(resp));
+              console.log(resp.length);
+              var length =resp.length;
+              for (x=0;x<length;x++){
+                $("#dispatchDiv").append ("Rider Number: "+(x+1) + '<br>');
+                $("#dispatchDiv").append ("Name: "+ resp[x].name + '<br>');
+                $("#dispatchDiv").append ("UO ID number: "+resp[x].uoid+ "<br>");
+                $("#dispatchDiv").append ("Phone Number: "+ resp[x].phone + '<br>');
+                $("#dispatchDiv").append ("Party Size: "+ resp[x].partySize + '<br>');
+                $("#dispatchDiv").append ("Requested Time: "+ resp[x].time + '<br>');
+                $("#dispatchDiv").append ("Current Location: "+ resp[x].currentLocation + '<br>');
+                $("#dispatchDiv").append ("Drop off Location: "+ resp[x].dropLocation + '<br>');
+                $("#dispatchDiv").append ("Additional Info: "+ resp[x].additionalInfo + '<br>');
+                $("#dispatchDiv").append ('<br>');
+              }
+          });
+        });
+        $('#clear').click(function(){
+          console.log('clear clicked'); 
+          $("#dispatchDiv").text(" ");
+          $.post("http://localhost:3000/clear",null, function(resp) {         
+          });
+        });      
+    });
+    </script>
+	</head>
+	<body>
+		<div class="container">	
+			<div class="jumbotron">
+				<h1>
+				~Saferide~
+				</h1>
+			</div>
+					<p class="text-left">Request a pick-up: </p>
+  					
+  					<div class="form-group">
+    					<label class="sr-only" for="Name">Name</label>
+	    				<input type="name" class="form-control" id="Name" placeholder="Enter name" required>
+  					</div>
+  				
+
+  					<div class="form-group">
+    					<label class="sr-only" for="UO ID">UOID</label>
+    					<input type="number" class="form-control" id="UO_ID" placeholder="Enter UO ID #" required>
+  					</div>
+  				
+  					<div class="form-group">
+    					<label class="sr-only" for="Phone number">Phone</label>
+    					<input type="tel" class="form-control" id="Phone_number" placeholder="Enter phone number" required>
+  					</div>
+	
+  					<div class="form-group">
+    					<label class="sr-only" for="Party size">Party size</label>
+    					<input type="number" class="form-control" id="Party_size" placeholder="Enter party size" required>
+  					</div>
+  				
+  				  	<div class="form-group">
+  				  		<small class="text-muted"> Enter desired pick-up time </small>
+    					<label class="sr-only" for="Time">Time</label>
+	    				<input type="time" class="form-control" id="Time" placeholder="Enter pick-up time" required>
+  					</div>
+  					
+  					<div class="form-group">
+    					<label class="sr-only" for="Location">Location</label>
+    					<input type="location" class="form-control" id="Location" placeholder="Enter location" required>
+  					</div>
+  				
+  					<div class="form-group">
+    					<label class="sr-only" for="Drop-off">Drop-off</label>
+    					<input type="drop-off" class="form-control" id="Drop-off" placeholder="Enter drop-off location" required>
+	  				</div>
+
+					<input type="checkbox" /> Additional information?
+ 					<input type="text" /> <br />
+
+				<br>
+  				<button type="submit" class="btn btn-default" id="button" >Submit</button>
+  				
+  				</div>
+  				
+			</form>
+			
+			<hr>
+			<p class="text-center"> 1228 University St, Eugene, OR 97403 <br> 
+			541-346-RIDE ex 2 </p>
+
+      <button class="btn btn-default" id="dispatch" >DISPATCH</button> 
+      <div id="dispatchDiv"></div>
+      <button class="btn btn-default" id="clear" >Clear Riders</button> 
+		</div>
+	</body>
+</html>
