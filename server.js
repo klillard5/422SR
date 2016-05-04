@@ -26,7 +26,7 @@ var Rider= mongoose.model('Rider', riderSchema);
 
 //This is the Server
 
-
+var path = require('path');
 var express        =         require("express");
 var bodyParser     =         require("body-parser");
 var app            =         express();
@@ -46,10 +46,10 @@ app.get('/saferide_banner.png',function(req,res){
     res.sendfile("saferide_banner.png");
     //console.log("Banner pic Sent to Client");
 });
-app.get('/bkg.png',function(req,res){
-    res.sendfile("bkg.png");
-    //console.log("Banner pic Sent to Client");
-});
+// app.get('/bkg.png',function(req,res){
+//     res.sendfile("bkg.png");
+//     //console.log("Banner pic Sent to Client");
+// });
 
 
 app.post('/submitInfoFromClient',function(req,res){
@@ -93,6 +93,15 @@ app.post('/dispatchQuery',function(req,toClient){
   });
 });
 
+app.post('/dispatchLogin',function(req,res){
+  res.send("LOGIN");
+
+  // res.sendfile(path.join(__dirname + '/dispatch.html'));
+  // console.log(path.join(__dirname + '/dispatch.html'));
+  console.log('dispatchClient connected');
+});
+
+
 app.post('/clear',function(req,toClient){
   Rider.find(function(err,res){
      if (err)return console.error(err);
@@ -104,7 +113,7 @@ app.post('/clear',function(req,toClient){
  
    console.log("Cleared Rider");
    // console.log(Rider.getCollectionInfos());
-  });
+});
  
 
 app.listen(3000,function(){

@@ -18,7 +18,6 @@ hr{
 }
 
 body{
-	background-image: url("bkg.png");
 }
 
 input[type=text] {
@@ -28,4 +27,9 @@ input[type=text] {
 input[type=checkbox]:checked + input[type=text] {
     visibility:visible;
     width: 700px !important;
+}
+
+#dispatchDiv{
+	background-color: white;
+	display: none;
 }
