@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+    <title>Dispatch Profile</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+        body        { padding-top:80px; word-wrap:break-word; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="page-header text-center">
+        <h1><span class="fa fa-anchor"></span> Dispatch Profile Page</h1>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    </div>
+     <button class="btn btn-default" id="dispatchUpdate" >update Dispatch</button> 
+    <div class="row">
+
+        <!-- LOCAL INFORMATION -->
+        <div class="col-sm-6">
+            <div class="well" id="dispatchDiv">
+                <h3><span class="fa fa-user"></span> Safe Ride Dispatch</h3>
+
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        // console.log('Doc ready');
+
+        $('#dispatchUpdate').click(function(){
+          // console.log('Update Clicked'); 
+          
+       
+
+        $.post("/dispatchUpdate",null, function(resp) {
+          console.log(resp[1].local);
+          console.log(resp.length);
+
+            for(x = 0; x< resp.length; x++){
+               
+                 $("#dispatchDiv").append(
+                    '<p id='+resp[x].local.name+'>  <strong>UOID</strong>: ' +resp[x].local.name+'<br> <strong>phone</strong>: ' +resp[x].local.phone+'<br><strong>Time</strong>: ' +resp[x].local.time+'<br><strong>Pick-up</strong>: ' +resp[x].local.currentLocation+'<br><strong>Drop-off</strong>: ' +resp[x].local.dropLocation+'<br><strong>Party Size</strong>: ' +resp[x].local.party+'<br><strong>Additional Info</strong>: ' +resp[x].local.additionalInfo+'<br><button type="" class="btn btn-warning btn-lg">Confirm</button><button type="" class="btn btn-warning btn-lg">Edit</button><button type="" class="btn btn-warning btn-lg">Remove</button>'
+
+
+
+                    );
+            }
+          // var length =resp.length;
+          // for (x=0;x<length;x++){
+          //   $("#dispatchDiv").append ("Rider Number: "+(x+1) + '<br>');
+          //   $("#dispatchDiv").append ("Name: "+ resp[x].name + '<br>');
+          //   $("#dispatchDiv").append ("UO ID number: "+resp[x].uoid+ "<br>");
+          //   $("#dispatchDiv").append ("Phone Number: "+ resp[x].phone + '<br>');
+          //   $("#dispatchDiv").append ("Party Size: "+ resp[x].partySize + '<br>');
+          //   $("#dispatchDiv").append ("Requested Time: "+ resp[x].time + '<br>');
+          //   $("#dispatchDiv").append ("Current Location: "+ resp[x].currentLocation + '<br>');
+          //   $("#dispatchDiv").append ("Drop off Location: "+ resp[x].dropLocation + '<br>');
+          //   $("#dispatchDiv").append ("Additional Info: "+ resp[x].additionalInfo + '<br>');
+          //   $("#dispatchDiv").append ('<br>');
+          //  }
+        });
+
+        });  
+
+
+    });
+</script>
+
+</html>

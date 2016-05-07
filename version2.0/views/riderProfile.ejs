@@ -1,0 +1,74 @@
+
+<!doctype html>
+<html>
+<head>
+    <title>Node Authentication</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+        body        { padding-top:80px; word-wrap:break-word; }
+    </style>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+<body>
+<div class="container">
+
+    <div class="page-header text-center">
+        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
+        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+    </div>
+
+    <div class="row">
+
+        <!-- LOCAL INFORMATION -->
+        <div class="col-sm-6">
+            <div class="well">
+                <h3><span class="fa fa-user"></span><%= user.local.name %></h3>
+
+                 <form action="/rideInfo" method="post">
+                    <input type='hidden' name="name" value=<%= user.local.name %>>
+                    <div class="form-group">
+                        <label>UOID</label>
+                        <input type="text" class="form-control" name="uoid">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="text" class="form-control" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label>Party Size</label>
+                        <input type="number" class="form-control" name="partySize">
+                    </div>
+                    <div class="form-group">
+                        <label>Enter Desired Pick-up Time</label>
+                        <input type="time" class="form-control" name="time">
+                    </div>
+                    <div class="form-group">
+                        <label>Pick up Location</label>
+                        <input type="text" class="form-control" name="location">
+                    </div>
+                    <div class="form-group">
+                        <label>Drop off Location</label>
+                        <input type="text" class="form-control" name="dropOff">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Additional Info</label>
+                        <input type="text" class="form-control" name="info">
+                    </div>
+                    
+                    
+                    
+
+                    <button type="submit" class="btn btn-warning btn-lg">Submit</button>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>
