@@ -8,22 +8,39 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class LoginActivity extends AppCompatActivity {
+    EditText usrname;
+    EditText passwd;
+    Button login;
+    Button reg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        final EditText usrname = (EditText) findViewById(R.id.username);
-        final EditText passwd = (EditText) findViewById(R.id.password);
-        final Button login = (Button) findViewById(R.id.ulogin);
-        final Button reg = (Button) findViewById(R.id.reg);
+        usrname = (EditText) findViewById(R.id.username);
+        passwd = (EditText) findViewById(R.id.password);
+        login = (Button) findViewById(R.id.ulogin);
+         reg = (Button) findViewById(R.id.reg);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View view) {
-                Intent loginIntent = new Intent(LoginActivity.this, RequestRideActivity.class);
-                LoginActivity.this.startActivity(loginIntent);
+                if (usrname.getText().toString().equals("n") && passwd.getText().toString().equals("p")) {
+                    Intent loginIntent = new Intent(LoginActivity.this, RequestRideActivity.class);
+                    LoginActivity.this.startActivity(loginIntent);
+                }
+                else{
+
+                }
+            }
+        });
+
+        reg.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                
             }
         });
 
