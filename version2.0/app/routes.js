@@ -11,6 +11,9 @@ module.exports = function(app, passport) {
     app.get('/saferide_banner.png',function(req,res){
         res.sendfile("saferide_banner.png");
     });
+    app.get('/saferideboundaries.jpg',function(req,res){
+        res.sendfile("saferideboundaries.jpg");
+    });
 
     // =====================================
     // LOGIN ===============================
