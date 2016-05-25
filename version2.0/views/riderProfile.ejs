@@ -10,7 +10,25 @@
     </style>
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script type="text/javascript">
+ $(document).ready(function() {
+    $('#statusUpdate').click(function(){
+          // console.log('Update status Clicked'); 
+          
+       
 
+        $.post("/statusUpdate",null, function(resp) {
+          
+         console.log(resp);
+          $("#status").append('Request for Pick up has been: <b>'+resp+'</b>');
+
+        });
+
+    
+    });
+  });
+
+</script>
 <body>
 <div class="container">
 
@@ -58,11 +76,15 @@
                         <input type="text" class="form-control" name="info">
                     </div>
                     
-                    
-                    
-
                     <button type="submit" class="btn btn-warning btn-lg">Submit</button>
+
+
+
                 </form>
+                    
+                    <p id='status'>
+                        <button id="statusUpdate" class="btn btn-warning btn-lg">Request Status</button>
+                    </p>
 
             </div>
         </div>

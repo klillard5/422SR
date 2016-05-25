@@ -52,6 +52,7 @@ module.exports = function(app, passport) {
         console.log('dispatch Update Requested');
 
         User.find(null, function(err,docs){
+            // console.log(docs);
             if(err){
                 res.status(500).send(err);
             }else{
@@ -128,10 +129,43 @@ module.exports = function(app, passport) {
         });
         res.send('Thank you your Ride has been submitted');
         res.redirect('/riderProfile');
-
-        //program stalls here investigate
         
     });
+
+    app.post('/quickRide', function(req, res) {
+        // console.log(req.body);
+        // console.log("req name" + req.body.name);
+        
+        var user= new User({ 
+            "local.name": req.body.name,
+            "local.uoid": req.body.uoid,
+            "local.phone": req.body.phone,
+            "local.partySize": req.body.partySize,
+            "local.time": req.body.time,
+            "local.currentLocation": req.body.location,
+            "local.dropLocation": req.body.dropOff,
+            "local.additionalInfo": req.body.info,  
+            "local.status":"submitted"});
+
+        user.save(function(err,data)
+          {
+              if(err)console.log('error on save');
+              else console.log('Saved Data: ', data);
+          });
+
+        
+            // console.log(user);
+        res.send('Thank you your Ride has been submitted');
+        res.redirect('/');
+        
+    });
+
+    app.post('/statusUpdate', function(req, res){
+        // console.log(req);
+
+        res.send(req.user.local.status);
+    });
+
 };
 
 // route middleware to make sure a user is logged in

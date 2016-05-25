@@ -15,7 +15,8 @@
         <h1><span class="fa fa-anchor"></span> Dispatch Profile Page</h1>
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
-     <button class="btn btn-default" id="dispatchUpdate" >update Dispatch</button> 
+      <button class="btn btn-default" id="dispatchUpdate" >update Dispatch</button> 
+     
     <div class="row">
 
         <!-- LOCAL INFORMATION -->
@@ -38,43 +39,47 @@
     $(document).ready(function() {
         // console.log('Doc ready');
 
+        
+
         $('#dispatchUpdate').click(function(){
           // console.log('Update Clicked'); 
           
        
 
-        $.post("/dispatchUpdate",null, function(resp) {
-          console.log(resp[1].local);
-          console.log(resp.length);
+          $.post("/dispatchUpdate",null, function(resp) {
+          // console.log(resp[0]);
+          // console.log(resp[0].local);
+          console.log("length of responce: " + resp.length);
 
             for(x = 0; x< resp.length; x++){
-               
+
                  $("#dispatchDiv").append(
-                    '<p id='+resp[x].local.name+'>  <strong>UOID</strong>: ' +resp[x].local.name+'<br> <strong>phone</strong>: ' +resp[x].local.phone+'<br><strong>Time</strong>: ' +resp[x].local.time+'<br><strong>Pick-up</strong>: ' +resp[x].local.currentLocation+'<br><strong>Drop-off</strong>: ' +resp[x].local.dropLocation+'<br><strong>Party Size</strong>: ' +resp[x].local.party+'<br><strong>Additional Info</strong>: ' +resp[x].local.additionalInfo+'<br><button type="" class="btn btn-warning btn-lg">Confirm</button><button type="" class="btn btn-warning btn-lg">Edit</button><button type="" class="btn btn-warning btn-lg">Remove</button>'
-
-
-
+                    '<p id='+resp[x].local.name+'><strong>UOID</strong>: ' +resp[x].local.name+'<br><strong>phone</strong>: ' +resp[x].local.phone+'<br><strong>Time</strong>: ' +resp[x].local.time+'<br><strong>Pick-up</strong>: ' +resp[x].local.currentLocation+'<br><strong>Drop-off</strong>: ' +resp[x].local.dropLocation+'<br><strong>Party Size</strong>: ' +resp[x].local.party+'<br><strong>Additional Info</strong>: ' +resp[x].local.additionalInfo+'<br><strong>Status</strong>: <span id="status'+x+'"> ' +resp[x].local.status+'</span><br><button onclick= $("#status'+x+'").text("Confirmed")  id="Button" class="btn btn-warning btn-lg">Confirm Request</button><button onclick=  $(this).parent().hide() class="btn btn-warning btn-lg">Remove</button></p>'
+// <form action="/buttonTest" method="post"><button class="btn btn-warning btn-lg" type="submit">Confirm</button></form>
                     );
             }
-          // var length =resp.length;
-          // for (x=0;x<length;x++){
-          //   $("#dispatchDiv").append ("Rider Number: "+(x+1) + '<br>');
-          //   $("#dispatchDiv").append ("Name: "+ resp[x].name + '<br>');
-          //   $("#dispatchDiv").append ("UO ID number: "+resp[x].uoid+ "<br>");
-          //   $("#dispatchDiv").append ("Phone Number: "+ resp[x].phone + '<br>');
-          //   $("#dispatchDiv").append ("Party Size: "+ resp[x].partySize + '<br>');
-          //   $("#dispatchDiv").append ("Requested Time: "+ resp[x].time + '<br>');
-          //   $("#dispatchDiv").append ("Current Location: "+ resp[x].currentLocation + '<br>');
-          //   $("#dispatchDiv").append ("Drop off Location: "+ resp[x].dropLocation + '<br>');
-          //   $("#dispatchDiv").append ("Additional Info: "+ resp[x].additionalInfo + '<br>');
-          //   $("#dispatchDiv").append ('<br>');
-          //  }
         });
 
+        
         });  
 
 
     });
+
+     $('#confirmButton').click(function(){
+        console.log("button Click");
+        $.post("/buttonTest",null, function(req, resp) {
+          req.send('information from client');
+          console.log(resp);
+        });
+
+      }); 
+
+    function test(name){
+      console.log(name.value() + ' testSat!!');
+    } 
+
+
 </script>
 
 </html>
