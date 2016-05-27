@@ -1,0 +1,63 @@
+DevLog Matti cone
+
+5/9- 
+
+Collected information about new revisions to make to our first phase build. 
+New features assigned to myself were to implement a login and profile save feature 
+to our webapp. 
+
+Initial plan- Use cookies to store access rights and auth. Keep simple by
+not encrypting passwords for initial build, and have relaxed controls for our beta build release
+Allow users to log in and check status of ride along with being able to request ride.
+
+Dispatch login page will allow authorized users to view all requested rides in the database.
+From this page the administrators of the program should be able to confirm a ride, edit the 
+details, and remove the ride once completed.
+
+
+5/11-
+
+Found an online tourtorial that walks through setiing up an encripted user login system for
+a node server and mongo database... score!!
+
+walked through tourtotial and built completely new front end, backend, and middleware to handle 
+communication between the two along with password authitication. Calling new plan Version2.0 and 
+waiting to communicate with the team if we want to completely revise the project.
+
+5/15-
+
+Migrated the preexisting desigend webapp to version 2.0. Linked existing database into project
+
+Built additional Dispact profile and added additional verification step to handle dispatch logins.
+
+
+5/16-
+
+Website shown to class and aditional comments added to design. Recommended that users be allowed
+to skip the sign-up process and request a ride from the home page.
+
+
+5/18-
+
+Changed structure of the webapp to allow a "quickride" to be added from the index (login) page
+this will allow users to request a ride without signing in. Without first creating a profile the users
+would not be able to check status of there ride.
+
+Started working on edit and remove features of the dispatch page. BLOCKER- dynamically creating a button 
+that creates a dynamic function.
+
+5/21-
+Resolved issues with the dispatch buttons but due to time constraints and reaching the point of feature
+freeze I am desciding to not implement the edit feature to the dispatch page. Dispatch page can now dynamicaly
+display all rides listed in the data base.
+
+5/23- 
+Groomed code and webpage to make things look nice and presentable. 
+
+5/25-
+Finishing touches
+
+5/26- 
+Final push 
+
+

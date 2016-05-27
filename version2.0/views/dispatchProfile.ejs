@@ -18,18 +18,12 @@
       <button class="btn btn-default" id="dispatchUpdate" >update Dispatch</button> 
      
     <div class="row">
-
-        <!-- LOCAL INFORMATION -->
         <div class="col-sm-6">
             <div class="well" id="dispatchDiv">
                 <h3><span class="fa fa-user"></span> Safe Ride Dispatch</h3>
-
-
             </div>
         </div>
-
     </div>
-
 </div>
 </body>
 
@@ -37,49 +31,28 @@
 
 <script>
     $(document).ready(function() {
-        // console.log('Doc ready');
-
-        
-
         $('#dispatchUpdate').click(function(){
-          // console.log('Update Clicked'); 
-          
-       
 
           $.post("/dispatchUpdate",null, function(resp) {
-          // console.log(resp[0]);
-          // console.log(resp[0].local);
           console.log("length of responce: " + resp.length);
-
             for(x = 0; x< resp.length; x++){
-
                  $("#dispatchDiv").append(
                     '<p id='+resp[x].local.name+'><strong>UOID</strong>: ' +resp[x].local.name+'<br><strong>phone</strong>: ' +resp[x].local.phone+'<br><strong>Time</strong>: ' +resp[x].local.time+'<br><strong>Pick-up</strong>: ' +resp[x].local.currentLocation+'<br><strong>Drop-off</strong>: ' +resp[x].local.dropLocation+'<br><strong>Party Size</strong>: ' +resp[x].local.party+'<br><strong>Additional Info</strong>: ' +resp[x].local.additionalInfo+'<br><strong>Status</strong>: <span id="status'+x+'"> ' +resp[x].local.status+'</span><br><button onclick= $("#status'+x+'").text("Confirmed")  id="Button" class="btn btn-warning btn-lg">Confirm Request</button><button onclick=  $(this).parent().hide() class="btn btn-warning btn-lg">Remove</button></p>'
-// <form action="/buttonTest" method="post"><button class="btn btn-warning btn-lg" type="submit">Confirm</button></form>
                     );
             }
-        });
-
-        
+          });
         });  
-
-
     });
-
      $('#confirmButton').click(function(){
         console.log("button Click");
         $.post("/buttonTest",null, function(req, resp) {
           req.send('information from client');
           console.log(resp);
         });
-
       }); 
-
     function test(name){
       console.log(name.value() + ' testSat!!');
     } 
-
-
 </script>
 
 </html>

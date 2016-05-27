@@ -15,12 +15,10 @@
 
     <h1><span class="fa fa-sign-in"></span> Dispatch Login</h1>
 
-    <!-- show any messages that come back with authentication -->
     <% if (message.length > 0) { %>
         <div class="alert alert-danger"><%= message %></div>
     <% } %>
 
-    <!-- LOGIN FORM -->
     <form action="/dispatchLogin" method="post">
         <div class="form-group">
             <label>Name</label>
