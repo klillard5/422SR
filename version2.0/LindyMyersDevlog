@@ -1,0 +1,40 @@
+Dev. log: Lindy Myers
+
+Week of May 1:
+
+	Work on creating the project proposal and defining goals for the project.
+
+Week of May 8:
+
+	Downloading files necessary to create and run android apps. Planned what the
+	android app will look like, what features it will offer compared to the web-app.
+	(Android app won't include dispatch login.)
+
+
+Week of May 15:
+
+	Looked through online tutorials for help with android apps. Creating a test app 
+	to understand android programming. Work with creating text fields, buttons and 
+	entry fields and other aspects of the android app.
+	
+	Creating actual android app. Created a basic login page and ride request page
+	with all expected fields. This offers no login/password verification. Allows users 
+	to go straight to request ride page upon pressing login button.
+	
+Week of May 22:
+
+	Work on connecting android app to server. Looked into many tutorials, guides
+	and other sources. Spent more than ten hours trying to figure out how to connect
+	the application to the node server unsuccessfully. Connecting the two will be 
+	first goal of the next iteration/sprint. (Which will not occur since this class
+	ends.)
+	
+	Created Saferide request success page that pops up once submit button is pressed.
+	Additionally, learned how to include images into android apps and adjust default
+	padding around the images. With that, included banner on different pages of the
+	application. Also learned how to remove default banner from the application to
+	use actual Saferide banner instead. Created all connections between different 
+	pages of the application so that users can freely manuever around the app. Created
+	mock login verification that would check to see if login/password matched certain
+	values, but commented it out as the application is not currently connected to
+	server. Other additional stylizing.
